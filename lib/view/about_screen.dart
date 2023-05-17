@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:technical_arkamaya/utils/result_state.dart';
+import 'package:technical_arkamaya/view/add_user_screen.dart';
 import 'package:technical_arkamaya/view/detail_screen.dart';
+import 'package:technical_arkamaya/view/home_screen.dart';
 import 'package:technical_arkamaya/viewmodel/providers/detail_user_provider.dart';
 
 class AboutScreen extends StatefulWidget {
@@ -21,6 +23,28 @@ class _AboutScreenState extends State<AboutScreen> {
     });
   }
 
+  int _selectedIndex = 2;
+
+  void _onTapItem(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    if (index == 0 || index == 1 || index == 2) {
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+        builder: (context) {
+          return _widgetOption.elementAt(index);
+        },
+      ), (route) => false);
+    }
+  }
+
+  final List<Widget> _widgetOption = [
+    const HomeScreen(),
+    const AddUserScreen(),
+    const AboutScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +52,18 @@ class _AboutScreenState extends State<AboutScreen> {
       appBar: AppBar(
         title: const Text("About Screen"),
         centerTitle: true,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined), label: "List User"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add_box_outlined), label: "New"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_box_outlined), label: "About"),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onTapItem,
       ),
       body: SingleChildScrollView(
         child: Consumer<DetailUserProvider>(

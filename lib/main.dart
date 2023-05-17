@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:technical_arkamaya/view/home_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:technical_arkamaya/view/home_screen.dart';
 import 'package:technical_arkamaya/viewmodel/providers/add_user_provider.dart';
 import 'package:technical_arkamaya/viewmodel/providers/detail_user_provider.dart';
 import 'package:technical_arkamaya/viewmodel/providers/list_user_provider.dart';
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const HomeBar()),
+          home: const HomeScreen()),
     );
   }
 }

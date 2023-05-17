@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:technical_arkamaya/utils/result_state.dart';
+import 'package:technical_arkamaya/view/about_screen.dart';
+import 'package:technical_arkamaya/view/home_screen.dart';
 import 'package:technical_arkamaya/viewmodel/providers/add_user_provider.dart';
 
 class AddUserScreen extends StatefulWidget {
@@ -22,12 +24,46 @@ class _AddUserScreenState extends State<AddUserScreen> {
     _jobController.dispose();
   }
 
+  int _selectedIndex = 1;
+
+  void _onTapItem(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    if (index == 0 || index == 1 || index == 2) {
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+        builder: (context) {
+          return _widgetOption.elementAt(index);
+        },
+      ), (route) => false);
+    }
+  }
+
+  final List<Widget> _widgetOption = [
+    const HomeScreen(),
+    const AddUserScreen(),
+    const AboutScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Create"),
         centerTitle: true,
+      ),
+       bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined), label: "List User"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add_box_outlined), label: "New"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_box_outlined), label: "About"),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onTapItem,
       ),
       body: SingleChildScrollView(
         child: Padding(
