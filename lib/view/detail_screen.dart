@@ -50,11 +50,6 @@ class _DetailScreenState extends State<DetailScreen> {
     }
   }
 
-  final List<Widget> _widgetOption = [
-    const HomeScreen(),
-    const AddUserScreen(),
-    const AboutScreen(),
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:technical_arkamaya/utils/result_state.dart';
 import 'package:technical_arkamaya/view/about_screen.dart';
 import 'package:technical_arkamaya/view/home_screen.dart';
@@ -53,7 +54,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
         title: const Text("Create"),
         centerTitle: true,
       ),
-       bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined), label: "List User"),
@@ -139,8 +140,21 @@ class _AddUserScreenState extends State<AddUserScreen> {
               Consumer<AddUserProvider>(
                 builder: (context, valueAdd, child) {
                   if (valueAdd.state == ResultState.loading) {
-                    return const Center(
-                      child: CircularProgressIndicator.adaptive(),
+                    return Shimmer.fromColors(
+                      baseColor: Colors.grey[200]!,
+                      highlightColor: Colors.grey[500]!,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(color: Colors.green[100]),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text("Data not been created"),
+                            Text("ID: - "),
+                            Text("Created At - "),
+                          ],
+                        ),
+                      ),
                     );
                   }
 

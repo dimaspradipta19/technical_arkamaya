@@ -99,60 +99,109 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         },
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0),
-                          child: Container(
-                              height: 100.0,
-                              width: MediaQuery.of(context).size.width,
-                              decoration:
-                                  BoxDecoration(color: Colors.green[50]),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(10.0)),
-                                      child: CachedNetworkImage(
-                                        imageUrl: valueListUser
-                                            .listUser!.data[index].avatar,
-                                        errorWidget: (context, url, error) =>
-                                            const CircularProgressIndicator
-                                                .adaptive(),
+                          padding: const EdgeInsets.symmetric(vertical: 5),
+                          child: Card(
+                            elevation: 3,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            margin: EdgeInsets.zero,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(100)),
+                                    child: CachedNetworkImage(
+                                      imageUrl: valueListUser
+                                          .listUser!.data[index].avatar,
+                                      height: 70,
+                                    ),
+                                  ),
+                                  // const SizedBox(width: 10.0),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(valueListUser
+                                              .listUser!.data[index].firstName),
+                                          const SizedBox(width: 5.0),
+                                          Text(valueListUser
+                                              .listUser!.data[index].lastName)
+                                        ],
                                       ),
-                                    ),
-                                    const SizedBox(width: 10.0),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              valueListUser.listUser!
-                                                  .data[index].firstName,
-                                              style: const TextStyle(
-                                                  fontSize: 20.0),
-                                            ),
-                                            const SizedBox(width: 5.0),
-                                            Text(
-                                              valueListUser.listUser!
-                                                  .data[index].lastName,
-                                              style: const TextStyle(
-                                                  fontSize: 20.0),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(height: 10.0),
-                                        Text(valueListUser
-                                            .listUser!.data[index].email)
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )),
+                                      const SizedBox(height: 10.0),
+                                      Text(valueListUser
+                                          .listUser!.data[index].email)
+                                    ],
+                                  ),
+                                  // const SizedBox(width: 10.0),
+                                  const Icon(Icons.arrow_forward_ios_outlined)
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
+                        // child: Padding(
+                        //   padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        //   child: Container(
+                        //       height: 100.0,
+                        //       width: MediaQuery.of(context).size.width,
+                        //       decoration:
+                        //           BoxDecoration(color: Colors.green[50]),
+                        //       child: Padding(
+                        //         padding: const EdgeInsets.all(8.0),
+                        //         child: Row(
+                        //           children: [
+                        //             ClipRRect(
+                        //               borderRadius: const BorderRadius.all(
+                        //                   Radius.circular(10.0)),
+                        //               child: CachedNetworkImage(
+                        //                 imageUrl: valueListUser
+                        //                     .listUser!.data[index].avatar,
+                        //                 errorWidget: (context, url, error) =>
+                        //                     const CircularProgressIndicator
+                        //                         .adaptive(),
+                        //               ),
+                        //             ),
+                        //             const SizedBox(width: 10.0),
+                        //             Column(
+                        //               crossAxisAlignment:
+                        //                   CrossAxisAlignment.start,
+                        //               mainAxisAlignment:
+                        //                   MainAxisAlignment.center,
+                        //               children: [
+                        //                 Row(
+                        //                   children: [
+                        //                     Text(
+                        //                       valueListUser.listUser!
+                        //                           .data[index].firstName,
+                        //                       style: const TextStyle(
+                        //                           fontSize: 20.0),
+                        //                     ),
+                        //                     const SizedBox(width: 5.0),
+                        //                     Text(
+                        //                       valueListUser.listUser!
+                        //                           .data[index].lastName,
+                        //                       style: const TextStyle(
+                        //                           fontSize: 20.0),
+                        //                     ),
+                        //                   ],
+                        //                 ),
+                        //                 const SizedBox(height: 10.0),
+                        //                 Text(valueListUser
+                        //                     .listUser!.data[index].email)
+                        //               ],
+                        //             ),
+                        //           ],
+                        //         ),
+                        //       )),
+                        // ),
                       );
                     },
                   ))
